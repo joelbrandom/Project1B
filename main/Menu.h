@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -7,7 +8,13 @@ void quitProgram()
 	return;
 }
 
-void addPolynomial();
+void addPolynomial()
+{
+	string input;
+	cout << "Enter a polynomial:\n"
+	cin >> input;
+	showMenu();
+}
 
 void showMenu()
 {
