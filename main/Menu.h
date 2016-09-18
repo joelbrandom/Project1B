@@ -3,6 +3,8 @@
 
 using namespace std;
 
+void showMenu();
+
 void quitProgram()
 {
 	return;
@@ -11,7 +13,7 @@ void quitProgram()
 void addPolynomial()
 {
 	string input;
-	cout << "Enter a polynomial:\n"
+	cout << "Enter a polynomial:\n";
 	cin >> input;
 	showMenu();
 }
