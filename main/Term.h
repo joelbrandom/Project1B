@@ -175,7 +175,7 @@ void processTerms()
 
 
 
-
+/*
 int main()
 {
 	//string str = "2X^2-3X+1";
@@ -183,3 +183,4 @@ int main()
 	fillList(str);
 	return 0;
 }
+*/
