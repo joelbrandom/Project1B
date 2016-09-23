@@ -7,7 +7,7 @@ void showMenu();
 
 int main()
 {
-	std::cout << "Test";
-	showMenu();
+	Menu menu;
+	menu.showOptions();
 	return 0;
 }
