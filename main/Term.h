@@ -49,8 +49,9 @@ public:
 			if (showpos && coefficient > 0) {
 				str.append("+");
 			}
-			str.append(std::to_string(coefficient));
-			if (exponent > 0) {
+			if (coefficient != 1)
+				str.append(std::to_string(coefficient));
+			if (exponent != 0) {
 				str.append("X^");
 				str.append(std::to_string(exponent));
 			}

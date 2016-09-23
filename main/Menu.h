@@ -43,6 +43,7 @@ public:
 	void addPolynomial2(Polynomial& list)
 	{
 		string input, formatted_input;
+		cout << "Enter polynomial:" << endl;
 		cin >> input;
 		regex find_for_pattern("(^|\\+|-)([xX])"), term_match("(-)?([0-9]+)([xX])?(\\^(-)?([0-9]+))?");
 		formatted_input = regex_replace(input, find_for_pattern, "$011$2", regex_constants::format_default);
