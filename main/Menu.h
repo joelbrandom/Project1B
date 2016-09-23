@@ -1,17 +1,18 @@
 #include <iostream>
 #include <string>
 #include <regex>
-#include "Term.h"
+//#include "Term.h"
 
 using namespace std;
 
 class Menu
 {
 public:
+	Menu() {};
 	void showOptions()
 	{
 		const int NUM_OPTIONS = 2;
-		int option = NUM_OPTIONS - 1;
+		int option = 0;
 		Polynomial listOfTerms;
 
 		while (option < NUM_OPTIONS - 1)
@@ -33,7 +34,7 @@ public:
 				addPolynomial2(listOfTerms);
 				break;
 			case 1:
-				quitProgram2();
+				//quitProgram2();
 				break;
 			}
 		}
@@ -42,6 +43,7 @@ public:
 	void addPolynomial2(Polynomial& list)
 	{
 		string input, formatted_input;
+		cin >> input;
 		regex find_for_pattern("(^|\\+|-)([xX])"), term_match("(-)?([0-9]+)([xX])?(\\^(-)?([0-9]+))?");
 		formatted_input = regex_replace(input, find_for_pattern, "$011$2", regex_constants::format_default);
 		sregex_iterator it(formatted_input.begin(), formatted_input.end(), term_match), it_end;
@@ -61,6 +63,7 @@ public:
 
 			string coefficient = it->str(1) + it->str(2);
 			string exponent = it->str(5) + it->str(6);
+			char letter = *it->str(3).c_str();
 			if (!it->str(1).empty() && it->str(2).empty()) coefficient = "-1";
 			if (coefficient.empty()) coefficient = "1";
 			if (exponent.empty() && !letter) exponent = "0";
@@ -101,12 +104,12 @@ public:
 		cout << endl;
 	}
 
-	void quitProgram2()
+	/*void quitProgram2()
 	{
-		return 0;
-	}
-}
-
+		return;
+	} */
+};
+/*
 void showMenu();
 
 void quitProgram()
@@ -164,3 +167,5 @@ void showMenu()
 		break;
 	}
 }
+
+*/

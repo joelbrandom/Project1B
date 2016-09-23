@@ -3,8 +3,6 @@
 #include "Term.h"
 #include "Menu.h"
 
-void showMenu();
-
 int main()
 {
 	Menu menu;
