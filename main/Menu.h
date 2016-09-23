@@ -76,12 +76,6 @@ public:
 			string exponent = it->str(5) + it->str(6);
 			char letter = *it->str(3).c_str();
 
-			/* If it->str(1) is not empty but it->str(2) is empty,
-			the coefficient is negative but not explicit, it is -1
-			*/
-			if (!it->str(1).empty() && it->str(2).empty()) coefficient = "-1";
-			if (coefficient.empty()) coefficient = "1";
-
 			/* If the exponent is empty, and there's no x or X,
 			the exponent is actually 0
 			*/

@@ -49,8 +49,10 @@ public:
 			if (showpos && coefficient > 0) {
 				str.append("+");
 			}
-			if (coefficient != 1)
+			if (coefficient != 1 && coefficient != -1)
 				str.append(std::to_string(coefficient));
+			if (coefficient == -1)
+				str.append("-");
 			if (exponent != 0) {
 				str.append("X^");
 				str.append(std::to_string(exponent));
@@ -67,6 +69,7 @@ struct compareTermDegree {
 };
 typedef list<Term> Polynomial;
 
+/*
 void outputList(Polynomial & l)
 {
 	compareTermDegree cp;
@@ -128,6 +131,7 @@ void processTerms()
 	std::cin >> input;
 	fillList(input);
 }
+*/
 
 /*
 int main()
