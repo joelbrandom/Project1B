@@ -98,7 +98,7 @@ void fillList(std::string& inputt)
 		bool found = false;
 		std::string coefficient = it->str(1) + it->str(2);
 		std::string exponent = it->str(5) + it->str(6);
-		//char letter = *it->str(3).c_str();
+		char letter = *it->str(3).c_str();
 		if (!it->str(1).empty() && it->str(2).empty()) coefficient = "-1";
 		if (coefficient.empty()) coefficient = "1";
 		if (exponent.empty() && !letter) exponent = "0";
