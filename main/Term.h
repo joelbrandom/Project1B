@@ -1,7 +1,4 @@
-#include <functional>
 #include <regex>
-#include <iterator>
-#include <algorithm>
 #include <list>
 #include <iostream>
 
