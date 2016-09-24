@@ -24,10 +24,15 @@ public:
 				cout << "empty\n";
 			else
 				outputList(listOfTerms);
+				
 			cout << "Please select an option from below:\n";
 			cout << "0: Add polynomial to current polynomial\n";
 			cout << "1: Clear polynomial\n";
 			cout << "2: Quit\n";
+
+			/* Try user inputted option, if it is not a valid option,
+			then throw an exception and try again
+			*/
 			try
 			{
 				cin >> option;
