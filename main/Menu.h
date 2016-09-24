@@ -31,9 +31,10 @@ public:
 			try
 			{
 				cin >> option;
-				if (!cin)throw invalid_argument("Invalid input.\n");
+				if (!cin)
+					throw invalid_argument("Invalid input.\n");
 			}
-			catch (const invalid_argument e)
+			catch (const invalid_argument& e)
 			{
 				cout << e.what();
 				cin.clear();
@@ -43,18 +44,27 @@ public:
 
 			switch (option)
 			{
-			case 0:
-			try
-			{
-				ui_addPolynomial();
-			} catch (const invalid_argument& e)
-			{
-				cout << e.what();
-			}
-				break;
-			case 1:
-				ui_clearPolynomial();
-				break;
+				/* Option 0: Add polynomial to current polynomial
+				*/
+				case 0:
+					try
+					{
+						ui_addPolynomial();
+					}
+					catch (const invalid_argument& e)
+					{
+						cout << e.what();
+					}
+					break;
+				/* Option 1: Clear polynomial
+				*/
+				case 1:
+					ui_clearPolynomial();
+					break;
+				/* If option entered is not an available option, do nothing
+				*/
+				default:
+					break;
 			}
 		}
 	}
