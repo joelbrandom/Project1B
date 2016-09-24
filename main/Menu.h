@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <regex>
+#include <limits>
 
 using namespace std;
 
@@ -16,7 +17,7 @@ public:
 	{
 		int option = 0;
 
-		while (option < 2 && option >= 0)
+		while (option < 2)
 		{
 			cout << "Your current polynomial is: ";
 			if (listOfTerms.empty())
@@ -27,7 +28,18 @@ public:
 			cout << "0: Add polynomial to current polynomial\n";
 			cout << "1: Clear polynomial\n";
 			cout << "2: Quit\n";
-			cin >> option;
+			try
+			{
+				cin >> option;
+				if (!cin)throw invalid_argument("Invalid input.\n");
+			}
+			catch (const invalid_argument e)
+			{
+				cout << e.what();
+				cin.clear();
+				option = -1;
+			}
+			cin.ignore(numeric_limits<int>::max(), '\n');
 
 			switch (option)
 			{

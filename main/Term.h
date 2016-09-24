@@ -95,7 +95,7 @@ void addPolynomial(Polynomial& list)
 	If so, then there is invalid input
 	*/
 	if (invalid_test != "")
-		throw invalid_argument("Invalid input.\n" + invalid_test + "\n");
+		throw invalid_argument("Invalid input.\n");
 
 	sregex_iterator it(formatted_input.begin(), formatted_input.end(), term_match), it_end;
 
