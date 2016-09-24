@@ -6,6 +6,8 @@ using namespace std;
 
 class Menu
 {
+private:
+	Polynomial listOfTerms;
 public:
 	/* Construct a Menu
 	*/
@@ -13,9 +15,8 @@ public:
 	void showOptions()
 	{
 		int option = 0;
-		Polynomial listOfTerms;
 
-		while (option == 0)
+		while (option < 2 && option >= 0)
 		{
 			cout << "Your current polynomial is: ";
 			if (listOfTerms.empty())
@@ -24,7 +25,8 @@ public:
 				outputList(listOfTerms);
 			cout << "Please select an option from below:\n";
 			cout << "0: Add polynomial to current polynomial\n";
-			cout << "1: Quit\n";
+			cout << "1: Clear polynomial\n";
+			cout << "2: Quit\n";
 			cin >> option;
 
 			switch (option)
@@ -32,113 +34,26 @@ public:
 			case 0:
 			try
 			{
-				addPolynomial(listOfTerms);
+				ui_addPolynomial();
 			} catch (const invalid_argument& e)
 			{
 				cout << e.what();
 			}
 				break;
 			case 1:
-			/* Placeholder for more options if necessary
-			*/
+				ui_clearPolynomial();
 				break;
 			}
 		}
 	}
 
-	/* Adds user inputted polynomial to Polynomial list
-	@param list The list to add user inputted polynomial to
-	*/
-	void addPolynomial(Polynomial& list)
+	void ui_addPolynomial()
 	{
-		string input, formatted_input, invalid_test;
-		cout << "Enter polynomial:" << endl;
-		cin >> input;
-
-		/* find_for_pattern regex searches for new line, + or - followed by x or X
-		and regex_replace uses it to place a 1 before terms without explicit coefficients
-		*/
-
-		/* term_match searches for each term of polynomial, after regex_replace all
-		terms now have a coefficient. We can use this constant pattern to find each term
-		*/
-		regex find_for_pattern("(^|\\+|-)([xX])"), term_match("(-)?([0-9]+)([xX])?(\\^(-)?([0-9]+))?");
-		formatted_input = regex_replace(input, find_for_pattern, "$011$2", regex_constants::format_default);
-		invalid_test = regex_replace(formatted_input, term_match, "");
-
-		/* Check if there is leftover input after removing all term_matches.
-		If so, then there is invalid input
-		*/
-		if (invalid_test != "")
-			throw invalid_argument("Invalid input.\n");
-
-		sregex_iterator it(formatted_input.begin(), formatted_input.end(), term_match), it_end;
-
-		while (it != it_end)
-		{
-			bool found = false;
-
-			/*
-			it->str(n) for n =
-			1 = - or nothing (sign of coefficient)
-			2 = Absolute value of coefficient
-			5 = - or nothing (sign of exponent)
-			6 = Absolute value of exponent
-			*/
-
-			string coefficient = it->str(1) + it->str(2);
-			string exponent = it->str(5) + it->str(6);
-			char letter = *it->str(3).c_str();
-
-			/* If the exponent is empty, and there's no x or X,
-			the exponent is actually 0
-			*/
-			if (exponent.empty() && !letter) exponent = "0";
-
-			/* If the exponent is empty, but there is an x or X,
-			the exponent is actually 1
-			*/
-			if (exponent.empty() && letter) exponent = "1";
-
-			/* If the coefficient is not 0, make a Term from the coefficient and exponent
-			and then add it to the list of Terms
-			*/
-			if (coefficient != "0")
-			{
-				Term term(stoi(coefficient), stoi(exponent));
-				for (Polynomial::iterator i = list.begin(); i != list.end(); ++i)
-				{
-					if (i->Exponent() == term.Exponent())
-					{
-						found = true;
-						i->addCoefficient(term.Coefficient());
-					}
-				}
-				if (found == false) list.push_back(term);
-			}
-			++it;
-		}
+		addPolynomial(listOfTerms);
 	}
 
-	/* Outputs Polynomial list as string
-	@param list The Polynomial list to be outputted
-	*/
-	void outputList(Polynomial& list)
+	void ui_clearPolynomial()
 	{
-		compareTermDegree cp;
-		list.sort(cp);
-
-		Polynomial::const_iterator it;
-		bool showpos = false;
-		for (it = list.begin(); it != list.end(); ++it)
-		{
-			cout << it->toString(showpos);
-
-			if (!showpos)
-			{
-				showpos = true;
-			}
-		}
-		cout << endl;
+		clearPolynomial(listOfTerms);
 	}
 };
