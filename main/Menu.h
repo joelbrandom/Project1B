@@ -12,7 +12,6 @@ public:
 	Menu() {};
 	void showOptions()
 	{
-		const int NUM_OPTIONS = 2;
 		int option = 0;
 		Polynomial listOfTerms;
 
@@ -40,6 +39,8 @@ public:
 			}
 				break;
 			case 1:
+			/* Placeholder for more options if necessary
+			*/
 				break;
 			}
 		}
