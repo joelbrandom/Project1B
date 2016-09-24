@@ -31,7 +31,13 @@ public:
 			switch (option)
 			{
 			case 0:
+			try
+			{
 				addPolynomial(listOfTerms);
+			} catch (const invalid_argument& e)
+			{
+				cout << e.what();
+			}
 				break;
 			case 1:
 				break;
@@ -44,7 +50,7 @@ public:
 	*/
 	void addPolynomial(Polynomial& list)
 	{
-		string input, formatted_input;
+		string input, formatted_input, invalid_test;
 		cout << "Enter polynomial:" << endl;
 		cin >> input;
 
@@ -57,6 +63,14 @@ public:
 		*/
 		regex find_for_pattern("(^|\\+|-)([xX])"), term_match("(-)?([0-9]+)([xX])?(\\^(-)?([0-9]+))?");
 		formatted_input = regex_replace(input, find_for_pattern, "$011$2", regex_constants::format_default);
+		invalid_test = regex_replace(input, term_match, "");
+
+		/* Check if there is leftover input after removing all term_matches.
+		If so, then there is invalid input
+		*/
+		if (invalid_test != "")
+			throw invalid_argument("Invalid input.");
+
 		sregex_iterator it(formatted_input.begin(), formatted_input.end(), term_match), it_end;
 
 		while (it != it_end)
