@@ -16,16 +16,15 @@ public:
 		int option = 0;
 		Polynomial listOfTerms;
 
-		while (option < NUM_OPTIONS - 1)
+		while (option == 0)
 		{
-			if (!listOfTerms.empty())
-			{
-				cout << "Your current polynomial is: ";
+			cout << "Your current polynomial is: ";
+			if (listOfTerms.empty())
+				cout << "empty\n";
+			else
 				outputList(listOfTerms);
-				cout << '\n' << '\n';
-			}
 			cout << "Please select an option from below:\n";
-			cout << "0: Add polynomial\n";
+			cout << "0: Add polynomial to current polynomial\n";
 			cout << "1: Quit\n";
 			cin >> option;
 
