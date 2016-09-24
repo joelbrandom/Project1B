@@ -48,6 +48,8 @@ public:
 			}
 			if (coefficient != 1 && coefficient != -1)
 				str.append(std::to_string(coefficient));
+			if (coefficient == 1 && exponent == 0)
+				str.append("1");
 			if (coefficient == -1)
 				str.append("-");
 			if (exponent != 0 && exponent != 1) {
