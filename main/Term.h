@@ -50,10 +50,12 @@ public:
 				str.append(std::to_string(coefficient));
 			if (coefficient == -1)
 				str.append("-");
-			if (exponent != 0) {
+			if (exponent != 0 && exponent != 1) {
 				str.append("X^");
 				str.append(std::to_string(exponent));
 			}
+			if (exponent == 1)
+				str.append("X");
 		}
 		return str;
 	}
