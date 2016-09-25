@@ -13,6 +13,10 @@ public:
 	/* Construct a Menu
 	*/
 	Menu() {};
+
+	/* Show the user their available options and call the functions
+	to execute selected option
+	*/
 	void showOptions()
 	{
 		int option = 0;
@@ -74,11 +78,15 @@ public:
 		}
 	}
 
+	/* Calls addPolynomial from Term.h
+	*/
 	void ui_addPolynomial()
 	{
 		addPolynomial(listOfTerms);
 	}
 
+	/* Calls clearPolynomial from Term.h
+	*/
 	void ui_clearPolynomial()
 	{
 		clearPolynomial(listOfTerms);
