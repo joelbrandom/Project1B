@@ -178,6 +178,9 @@ void outputList(Polynomial& list)
 	cout << endl;
 }
 
+/* Clears the polynomial. It will now show as empty in Menu.
+Polynomials can be added to the now empty polynomial
+*/
 void clearPolynomial(Polynomial& list)
 {
 	list.clear();
